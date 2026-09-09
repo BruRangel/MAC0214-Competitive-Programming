@@ -20,7 +20,7 @@ void solve() {
         acm_numbers[i] = numbers[i] + acm_numbers[i-1];
     }
 
-    
+
 }
 
 int main() {
