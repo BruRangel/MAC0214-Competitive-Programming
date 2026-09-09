@@ -14,16 +14,34 @@ void solve() {
         numbers.push_back(current);
     }
 
-    vector<ll> acm_numbers;
-    acm_numbers[0] = numbers[0];
-    for (ll i = 1; i < n; i++) {
-        acm_numbers[i] = numbers[i] + acm_numbers[i-1];
+    // Seja $$P[i] = \sum_{j=0}^{i-1}\texttt{numbers[j]}$$
+
+    // Temos que a soma do subarray numbers[l, r] é:
+    // $$P[r+1] - P[l]$$
+    // Queremos que $$P[r] - P[l-1] = x$$. Portanto $$ P[l-1] = P[r] - x $$.
+    // Portanto, não armazenar cada prefix sum $$ P[r] $$.
+    // Basta calcularmos quantas vezes $$P[r] - x $$ apareceu anteriormente
+    // Podemos mapear essas frequências usando um unordered_map
+    // Assim resolvemos com complexidade $$\mathcal{O}(n)$$.
+    map<ll, ll> freq;
+    freq[0] = 1;
+
+    ll prefix = 0;
+    ll res = 0;
+
+    for (ll number : numbers) {
+        prefix += number;
+        res += freq[prefix - x];
+        freq[prefix]++;
     }
 
-
+    cout << res << "\n";
 }
 
 int main() {
+    ios_base::sync_with_stdio(0);
+    cin.tie(0);
+    cout.tie(0);
     solve();
     return 0;
 }
