@@ -11,7 +11,7 @@ void solve() {
         cin >> a[i];
     }
 
-    // mapa que guarda (soma, par de índices que produz a soma)
+    // (soma, par de índices)
     unordered_map<ll, pair<ll, ll>> pares;
 
     for (ll i = 0; i < n; i++) {
