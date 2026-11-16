@@ -35,9 +35,11 @@ void solve() {
             resposta.push_back(s[i - 1]);
             i--;
             j--;
-        } else if (dp[i - 1][j] >= dp[i][j - 1]) {
+        } 
+        else if (dp[i - 1][j] >= dp[i][j - 1]) {
             i--;
-        } else {
+        } 
+        else {
             j--;
         }
     }
